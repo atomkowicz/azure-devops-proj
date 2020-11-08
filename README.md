@@ -2,7 +2,7 @@
 
 ## Steps:
 
-### CI set up Azure Cloud Shell
+### Set up project scaffolding on Azure Cloud Shell
 
 1. Clone Github repository
 
