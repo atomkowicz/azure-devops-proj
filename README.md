@@ -1,51 +1,110 @@
 # Overview
-
-<TODO: complete this with an overview of your project>
+This is a training project from Udacity Azure DevOps Nanodegree.
+Pupose of this project is to build a scaffolding that will assist in performing both Continuous Integration and Continuous Delivery. 
+Github Actions will perform an initial lint, test, and install cycle. 
+Azure Pipelines integration is to enable Continuous Delivery to Azure App Service.
 
 ## Project Plan
-<TODO: Project Plan
 
-* A link to a Trello board for the project
-* A link to a spreadsheet that includes the original and final project plan>
+* Trello board: https://trello.com/b/yIfaIt4c/board-sklearn-flask-app
+* Spreadsheet with the project plan: https://docs.google.com/spreadsheets/d/1J4lHbIkctcIvDkE9NPgnKiSGkTGzjTvcXjnVQwpdfgI/edit?usp=sharing
 
 ## Instructions
 
-<TODO:  
-* Architectural Diagram (Shows how key parts of the system work)>
+Project overview: architectural diagram 
 
-<TODO:  Instructions for running the Python project.  How could a user with no context run this project without asking you for any help.  Include screenshots with explicit steps to create that work. Be sure to at least include the following screenshots:
+![Architectural Diagram](screenshots/schema.jpg?raw=true "Diagram")
 
-* Project running on Azure App Service
+### CI: Set up Azure Cloud Shell
 
-* Project cloned into Azure Cloud Shell
+* Launch Azure Cloud Shell and generate ssh keys. 
 
-* Passing tests that are displayed after running the `make all` command from the `Makefile`
+    ```
+    ssh-keygen -t rsa
+    ```
+* Place your public key content in Github profile settings. Clone github repository into Azure Cloud Shell:
 
-* Output of a test run
+    ```
+    git clone git@github.com:atomkowicz/azure-devops-proj.git
+    ```
 
-* Successful deploy of the project in Azure Pipelines.  [Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+    Project cloned into Azure Cloud Shell:
 
-* Running Azure App Service from Azure Pipelines automatic deployment
+    ![Azure Cloud Shell git clone](screenshots/1.azure-cloud-shell-clone.jpg?raw=true "Clone repo to Azure Cloud Shell")
 
-* Successful prediction from deployed flask app in Azure Cloud Shell.  [Use this file as a template for the deployed prediction](https://github.com/udacity/nd082-Azure-Cloud-DevOps-Starter-Code/blob/master/C2-AgileDevelopmentwithAzure/project/starter_files/flask-sklearn/make_predict_azure_app.sh).
-The output should look similar to this:
+* Set up virtual environment:
 
-```bash
-udacity@Azure:~$ ./make_predict_azure_app.sh
-Port: 443
-{"prediction":[20.35373177134412]}
-```
+    ```
+    python3 -m venv ~/.azure-devops-proj
+    source ~/.azure-devops-proj/bin/activate
+    ```
 
-* Output of streamed log files from deployed application
+* Install, lint and test
 
-> 
+    ```
+    make all
+    ```
+
+    Passing tests that are displayed after running the `make all` command from the `Makefile`:
+
+    ![Test output](screenshots/test-passed.jpg?raw=true "Tests passed")
+
+* Run the project app.py file to prove it works
+
+    ```
+    python3 app.py
+    ```
+
+* Create App Service
+
+    ```
+    az webapp up -n azure-devops-proj --sku F1
+    ```
+
+    Project running on Azure App Service:
+
+
+    ![App Service](screenshots/appservice-running.jpg?raw=true "Azure App Service")
+
+* Make prediction
+
+    ```
+    ./make_prediction.sh
+    ```
+    The output should be similar to:
+
+    ![Make prediction](screenshots/make-prediction.jpg?raw=true "Make predictions output")
+
+### CI: Configure Github Actions
+
+* Set up Github Actions and verify remote tests pass
+
+    ![Github Actions](screenshots/github-actions.jpg?raw=true "Github Actions")
+
+
+### CD: Create and configure Azure Pipeline
+
+* Set up new project on Azure dev ops and create new pipeline. [Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+
+    ![Azure pipeline](screenshots/pipelines.jpg?raw=true "Azure pipeline")
+
+* Run command to see logs
+
+    ```
+    az webapp log tail
+    ```
+
+    Output of streamed log files from deployed application:
+
+    ![Logs](screenshots/logs.jpg?raw=true "Logs")
+
 
 ## Enhancements
 
-<TODO: A short description of how to improve the project in the future>
+Create dev, stage and prod environment
 
 ## Demo 
 
 <TODO: Add link Screencast on YouTube>
 
-
+![CI](https://github.com/atomkowicz/azure-devops/workflows/CI/badge.svg)
