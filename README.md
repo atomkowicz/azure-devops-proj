@@ -2,7 +2,7 @@
 This is a training project from Udacity Azure DevOps Nanodegree.
 The Purpose of this project is to build a scaffolding that will assist in performing both Continuous Integration and Continuous Delivery. 
 Github Actions will perform an initial lint, test, and install cycle. 
-Azure Pipelines integration is to enable Continuous Delivery to Azure App Service.
+Continuous Delivery to Azure App Service is set up using Azure Pipelines integration.
 
 ## Project Plan
 
