@@ -1,6 +1,6 @@
 # Overview
 This is a training project from Udacity Azure DevOps Nanodegree.
-Pupose of this project is to build a scaffolding that will assist in performing both Continuous Integration and Continuous Delivery. 
+The Purpose of this project is to build a scaffolding that will assist in performing both Continuous Integration and Continuous Delivery. 
 Github Actions will perform an initial lint, test, and install cycle. 
 Azure Pipelines integration is to enable Continuous Delivery to Azure App Service.
 
@@ -98,10 +98,19 @@ Project overview: architectural diagram
 
     ![Logs](screenshots/logs.jpg?raw=true "Logs")
 
+### Test with Locust
+
+* Perform a load test on the website
+
+    ![Locust](screenshots/run-locust-1.jpg?raw=true "Locust")
+    ![Locust](screenshots/run-locust.jpg?raw=true "Locust")
 
 ## Enhancements
 
-Create dev, stage and prod environment
+* Create dev, stage and prod environment
+* Add tests
+* Run with Kubernetes
+* Using Github Actions instead of Azure pipelines
 
 ## Demo 
 
