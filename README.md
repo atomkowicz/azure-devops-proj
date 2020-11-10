@@ -69,7 +69,7 @@ Project overview: architectural diagram
 * Make prediction
 
     ```
-    ./make_prediction.sh
+    ./make_prediction_azure_app.sh
     ```
     The output should be similar to:
 
