@@ -114,6 +114,6 @@ Project overview: architectural diagram
 
 ## Demo 
 
-<TODO: Add link Screencast on YouTube>
+
 
 ![CI](https://github.com/atomkowicz/azure-devops/workflows/CI/badge.svg)
